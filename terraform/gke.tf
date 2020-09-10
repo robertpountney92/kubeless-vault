@@ -6,7 +6,7 @@ resource "google_container_cluster" "primary" {
 
   remove_default_node_pool = true
   // remove_default_node_pool = false
-  initial_node_count       = 1
+  initial_node_count = 1
 
   network    = google_compute_network.vpc.name
   subnetwork = google_compute_subnetwork.subnet.name
@@ -41,7 +41,7 @@ resource "google_container_node_pool" "primary_nodes" {
     # preemptible  = true
     machine_type = "n1-standard-1"
     // machine_type = "f1-micro-1"
-    tags         = ["gke-node", "${var.project_id}-gke"]
+    tags = ["gke-node", "${var.project_id}-gke"]
     metadata = {
       disable-legacy-endpoints = "true"
     }

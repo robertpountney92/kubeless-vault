@@ -47,6 +47,8 @@ Also add your account to the Application Default Credentials (ADC). This will al
 
 Note: may need to create a service account key also...
 
+    gcloud iam service-accounts keys create --iam-account "vault-server@${GOOGLE_CLOUD_PROJECT}.iam.gserviceaccount.com" credentials.json
+
 ## Create GKE cluster
 
 Navigate to `/terraform` directory and update `terraform.tfvars` with your project_id. Specify number of nodes to be 1 (this is to avoid regional quota restrictiction present in GCP).
@@ -103,3 +105,7 @@ Add Vault pod 2 and 3 to the raft cluster
     vault operator raft join "http://vault-0.vault-internal:8200"
     export VAULT_TOKEN=<root_token>
     vault operator raft list-peers
+
+View Vault UI by performing the following command then navigating to `127.0.0.1:8200`
+
+    kubectl port-forward vault-0 8200:8200

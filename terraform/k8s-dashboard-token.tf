@@ -1,6 +1,6 @@
 // resource "kubernetes_role_binding" "token" {
 //   depends_on = [google_container_cluster.primary, module.kubernetes_dashboard]
-  
+
 //   metadata {
 //     name      = "admin-user"
 //   }

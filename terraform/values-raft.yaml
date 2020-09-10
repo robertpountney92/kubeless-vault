@@ -37,10 +37,11 @@ server:
         }
         
         seal "gcpckms" {
-          project     = "us-central1"
-          region      = "stellar-lock-286113"
-          key_ring    = "vault"
-          crypto_key  = "vault-init"
+          # All arguments for this stanza are provided via Environment variables, see vault-k8s.tf.
+          # project     = "$(GOOGLE_PROJECT)"
+          # region      = "$(GOOGLE_REGION)"
+          # key_ring    = "vault"
+          # crypto_key  = "vault-init"
         }
 
         storage "raft" {
