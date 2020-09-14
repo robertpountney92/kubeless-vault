@@ -24,6 +24,8 @@ Also add your account to the Application Default Credentials (ADC). This will al
 
 ## Create GCP KMS key
 
+Note alternatively... if you do not have exiting GCP KMS key, simply uncomment `new-kms.tf` before running `terraform apply`. This will create KMS keys if they do not already exit. However once created these keys can not be delete, including via `terraform destroy`. So on susequent applies please comment back out `kms.tf`.
+<!-- 
     $ gcloud kms keyrings create vault \
         --location <region>
 
@@ -47,7 +49,7 @@ Also add your account to the Application Default Credentials (ADC). This will al
 
 Note: may need to create a service account key also...
 
-    gcloud iam service-accounts keys create --iam-account "vault-server@${GOOGLE_CLOUD_PROJECT}.iam.gserviceaccount.com" credentials.json
+    gcloud iam service-accounts keys create --iam-account "vault-server@${GOOGLE_CLOUD_PROJECT}.iam.gserviceaccount.com" credentials.json -->
 
 ## Create GKE cluster
 

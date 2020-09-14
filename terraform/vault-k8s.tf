@@ -51,13 +51,13 @@ resource "helm_release" "vault" {
   }
   set {
     name = "server.extraEnvironmentVars.VAULT_GCPCKMS_SEAL_KEY_RING"
-    // value = var.key_ring
-    value = google_kms_key_ring.vault.name
+    value = var.key_ring
+    // value = google_kms_key_ring.vault.name
   }
   set {
     name = "server.extraEnvironmentVars.VAULT_GCPCKMS_SEAL_CRYPTO_KEY"
-    // value = var.crypto_key
-    value = google_kms_crypto_key.vault-init.name
+    value = var.crypto_key
+    // value = google_kms_crypto_key.vault-init.name
   }
 }
 // resource "null_resource" "cleanup_pvc0" {
