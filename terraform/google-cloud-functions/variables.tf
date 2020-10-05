@@ -16,7 +16,7 @@
 //   ]
 // }
 
-variable "vault_address" {
+variable "VAULT_ADDR" {
   description = "Load balancer address for vault cluster"
 }
 
@@ -27,10 +27,10 @@ variable "service_account_id_verifier" {
 
 variable "service_account_id_auther" {
   description = "Service account which will be attached to the Cloud Function at boot"
-  default     = "vault-auther"
+  default     = "app1-vault-auther"
 }
 
-variable "apikey1" {
+variable "twitter" {
   description = "An API key to interact with an external system"
   default     = "an-example-api-key"
 }
