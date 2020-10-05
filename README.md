@@ -46,6 +46,6 @@ Enable APIs for required Google Cloud services
 
 ## Steps
 
-1.  [create-gke-cluster](https://github.com/robertpountney92/serverless-vault/tree/master/terraform/gke-cluster/README.md)
-2.  [deploy-vault-helm](https://github.com/robertpountney92/serverless-vault/tree/master/terraform/vault-helm/README.md)
-3.  [deploy-cloud-function](https://github.com/robertpountney92/serverless-vault/tree/master/terraform/google-cloud-functions/README.md)
+1.  [create-gke-cluster](https://github.com/robertpountney92/serverless-vault/tree/master/terraform/gke-cluster)
+2.  [deploy-vault-helm](https://github.com/robertpountney92/serverless-vault/tree/master/terraform/vault-helm)
+3.  [deploy-cloud-function](https://github.com/robertpountney92/serverless-vault/tree/master/terraform/google-cloud-functions)
