@@ -1,12 +1,10 @@
-
 # GKE cluster
 resource "google_container_cluster" "primary" {
-  name     = "${var.project_id}-gke"
-  location = var.region
+  name     = "${data.google_client_config.current.project}-gke"
+  location = data.google_client_config.current.region
 
   remove_default_node_pool = true
-  // remove_default_node_pool = false
-  initial_node_count = 1
+  initial_node_count       = 1
 
   network    = google_compute_network.vpc.name
   subnetwork = google_compute_subnetwork.subnet.name
@@ -24,7 +22,7 @@ resource "google_container_cluster" "primary" {
 # Separately Managed Node Pool
 resource "google_container_node_pool" "primary_nodes" {
   name       = "${google_container_cluster.primary.name}-node-pool"
-  location   = var.region
+  location   = data.google_client_config.current.region
   cluster    = google_container_cluster.primary.name
   node_count = var.gke_num_nodes
 
@@ -35,20 +33,13 @@ resource "google_container_node_pool" "primary_nodes" {
     ]
 
     labels = {
-      env = var.project_id
+      env = data.google_client_config.current.project
     }
 
-    # preemptible  = true
     machine_type = "n1-standard-1"
-    // machine_type = "f1-micro-1"
-    tags = ["gke-node", "${var.project_id}-gke"]
+    tags         = ["gke-node", "${data.google_client_config.current.project}-gke"]
     metadata = {
       disable-legacy-endpoints = "true"
     }
   }
-}
-
-output "kubernetes_cluster_name" {
-  value       = google_container_cluster.primary.name
-  description = "GKE Cluster Name"
 }
