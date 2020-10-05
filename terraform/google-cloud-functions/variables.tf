@@ -1,22 +1,4 @@
-// variable "project_id" {
-//   description = "project id"
-// }
-
-// variable "region" {
-//   description = "region"
-// }
-
-// variable "gcp_service_list" {
-//   description = "List of GCP service to be enabled for a project."
-//   type        = list
-//   default = [
-//     "cloudfunctions.googleapis.com",  # Cloud Functions API
-//     "iam.googleapis.com",             # Identity and Access Management (IAM) API
-//     "cloudbuild.googleapis.com",      # Cloud Build API
-//   ]
-// }
-
-variable "vault_address" {
+variable "VAULT_ADDR" {
   description = "Load balancer address for vault cluster"
 }
 

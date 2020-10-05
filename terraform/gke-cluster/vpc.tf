@@ -10,10 +10,4 @@ resource "google_compute_subnetwork" "subnet" {
   region        = data.google_client_config.current.region
   network       = google_compute_network.vpc.name
   ip_cidr_range = "10.10.0.0/24"
-
 }
-
-// output "region" {
-//   value       = data.google_client_config.current.region
-//   description = "region"
-// }

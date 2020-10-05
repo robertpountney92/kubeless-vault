@@ -12,37 +12,23 @@ Configure kubectl
 
 Initialize the Vault on pod 1
 
-    kubectl exec -it vault-0 sh
-    vault operator init -recovery-shares=1 -recovery-threshold=1
-    vault status
-    export VAULT_TOKEN=<root_token>
-    vault operator raft list-peers
-
-    kubectl exec -it vault-0 -- vault operator init -recovery-shares=1 -recovery-threshold=1 | grep "Initial Root Token:" | awk 'NR==1 {print $NF}' > root_token
-
+    kubectl exec -it vault-0 -- vault operator init -recovery-shares=1 -recovery-threshold=1 | grep "Initial Root Token:" | awk 'NR==1 {print $NF}'
+    export VAULT_TOKEN=<root_token> # From command above
 
 Add Vault pod 2 to the raft cluster
     
-    kubectl exec -it vault-1 sh
-    vault operator raft join "http://vault-0.vault-internal:8200"
-    export VAULT_TOKEN=<root_token>
-    vault operator raft list-peers
-
     kubectl exec -it vault-1 -- vault operator raft join "http://vault-0.vault-internal:8200"
 
 Add Vault pod 3 to the raft cluster
     
-    kubectl exec -it vault-2 sh
-    vault operator raft join "http://vault-0.vault-internal:8200"
-    export VAULT_TOKEN=<root_token>
-    vault operator raft list-peers
-
     kubectl exec -it vault-2 -- vault operator raft join "http://vault-0.vault-internal:8200"
 
 ### Connect to Vault Cluster
 
 Connect to Vault cluster from local machine
 
-    export VAULT_TOKEN=$(cat root_token)
     export VAULT_ADDR=$(terraform output vault_lb_endpoint)
+
+Test connection
+
     vault secrets list

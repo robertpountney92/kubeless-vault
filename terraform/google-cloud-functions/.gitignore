@@ -1,0 +1,2 @@
+# exclude apikey.zip created when deploying google cloud function
+apikey.zip
